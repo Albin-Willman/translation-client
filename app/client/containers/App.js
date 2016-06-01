@@ -20,7 +20,7 @@ import {
   setPassword
 } from 'actions/user-actions';
 
-import { login, createUser } from 'services/user-services';
+import { login, createUser, logout } from 'services/user-services';
 import { loadStrings, saveTranslations, uploadYML } from 'services/strings-services';
 import { goToRoute } from 'services/route-services';
 
@@ -45,11 +45,6 @@ export default class App extends React.Component {
 
   static propTypes = {
     title: React.PropTypes.string,
-  }
-
-  static defaultProps = {
-    to: "sv",
-    from: "en",
   }
 
   verifyLoggedIn() {
@@ -89,15 +84,17 @@ export default class App extends React.Component {
   }
 
   buildUploadYMLPage() {
-    var { dispatch } = this.props;
+    var { dispatch, languages } = this.props;
     return <UploadYmlForm
       submit={(yml) => { dispatch(uploadYML(yml))}}
+      languages={languages.languages}
       />
 
   }
 
   buildTranslationPage() {
-    var { translations, from, to, dispatch } = this.props;
+    var { translations, languages, dispatch } = this.props;
+    var { from, to } = languages;
     return <TranslationList 
       items={translations.strings}
       to={ to }
@@ -123,13 +120,13 @@ export default class App extends React.Component {
     return <TopBar
       goTo={(route) => { dispatch(goToRoute(route)) }}
       loggedIn={this.verifyLoggedIn()}
+      logout={$ => { dispatch(logout()) }}
       user={user}
       router={router}
       />
   }
 
   render() {
-    var { translations, from, to } = this.props;
     var content = this.buildContent();
     var topbar = this.buildTopBar();
     return (

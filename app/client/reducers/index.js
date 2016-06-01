@@ -13,11 +13,14 @@
 import { translationsReducer } from 'reducers/translations-reducer';
 import { routeReducer } from 'reducers/route-reducer';
 import { userReducer } from 'reducers/user-reducer';
+import { languagesReducer } from 'reducers/languages-reducer';
+
 /* reapp: import new reducer */
 
 export const reducers = {
   translations: translationsReducer,
   user: userReducer,
   routes: routeReducer,
+  languages: languagesReducer,
   /* reapp: append new reducer */
 };

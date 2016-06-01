@@ -44,7 +44,7 @@ export function saveTranslations(){
   }
 }
 
-export function uploadYML(yml){
+export function uploadYML(yml, language){
   return (dispatch, getState) => {
     dispatch(setLoading(true));
     var successCallback = (response) => {
@@ -56,7 +56,7 @@ export function uploadYML(yml){
     };
 
     var { user }= getState();
-    Api.uploadYML(user, { yml: yml }, successCallback, failCallback);
+    Api.uploadYML(user, { yml, language }, successCallback, failCallback);
   }
 }
 

@@ -9,7 +9,6 @@ export function login() {
   return (dispatch, getState) => {
     var user = getState().user;
     var successCallback = function(response){
-      console.log(response);
       var tokenData = response.data.attributes;
       dispatch(setLoggedin(tokenData.user_id, tokenData.token));
       dispatch(setPassword(''));
@@ -34,4 +33,20 @@ export function verifyLoggedIn() {
     }
     Api.verifyLoggedIn(user, successCallback, failCallback);
   }
+}
+
+export function logout(){
+  return (dispatch, getState) => {
+    var successCallback = function(response){
+      dispatch(resetUser());
+      dispatch(resetStrings());
+      dispatch(goToRoute('/'));
+    };
+    var failCallback = function(data){
+      dispatch(verifyLoggedIn());
+      alert('Failed to log out.');
+    };
+    var user = getState().user;
+    Api.logout(user, null, successCallback, failCallback);
+  };
 }

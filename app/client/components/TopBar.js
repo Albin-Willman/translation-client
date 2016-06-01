@@ -14,7 +14,7 @@ export default class TopBar extends React.Component {
 
   static defaultProps = {
     goTo: '',
-    logOut: '',
+    logout: '',
     loggedIn: false,
     user: {},
     router: {},
@@ -22,7 +22,7 @@ export default class TopBar extends React.Component {
   }
 
   buildNav() {
-    var { loggedIn, goTo, logOut, router } = this.props;
+    var { loggedIn, goTo, logout, router } = this.props;
     if(!loggedIn){
       return '';
     }
@@ -30,6 +30,9 @@ export default class TopBar extends React.Component {
       <Navbar.Collapse>
         <Nav>
           <NavItem href="#" onClick={$ => { goTo(router.uploadYML) }}>Upload YML</NavItem>
+        </Nav>
+        <Nav pullRight>
+          <NavItem href="#" onClick={ logout }>Log out</NavItem>
         </Nav>
       </Navbar.Collapse>);
   }
