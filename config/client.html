@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>translation-frontend</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="dist/bootstrap/css/bootstrap.css">
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="/app.js"></script>
+        <script>
+        (function(app) {
+            var target = document.getElementById('app');
+            var payload = {title: 'translation-frontend - dev'};
+            app.start(target, payload);
+        })(app);
+        </script>
+    </body>
+</html>
