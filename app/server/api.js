@@ -32,6 +32,12 @@ router.post('/translations', function (req, res) {
     })
 });
 
+router.post('/translations/uploadYML', function (req, res) {
+    res.send({
+        data: true
+    })
+});
+
 router.post('/users/login', function (req, res) {
     res.send({
         data: {

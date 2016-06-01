@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 import Grid from 'react-bootstrap/lib/Grid';
 import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 import TranslationList from 'components/TranslationList';
 import LoadingScreen from 'components/LoadingScreen';
 import LoginPage from 'components/LoginPage';
-
+import UploadYmlForm from 'components/UploadYmlForm';
+import TopBar from 'components/TopBar';
 
 
 import { setTranslation } from 'actions/translation-actions';
@@ -21,7 +21,7 @@ import {
 } from 'actions/user-actions';
 
 import { login, createUser } from 'services/user-services';
-import { loadStrings, saveTranslations } from 'services/strings-services';
+import { loadStrings, saveTranslations, uploadYML } from 'services/strings-services';
 import { goToRoute } from 'services/route-services';
 
 import { router } from 'lib/router';
@@ -82,9 +82,18 @@ export default class App extends React.Component {
     switch (routes.currentPage) {
       case router.login:         Page = this.buildLoginPage(); break;
       case router.translations:  Page = this.buildTranslationPage(); break;
+      case router.uploadYML:     Page = this.buildUploadYMLPage(); break;
       default:                   Page = this.buildLoginPage(); break;
     }
     return Page;
+  }
+
+  buildUploadYMLPage() {
+    var { dispatch } = this.props;
+    return <UploadYmlForm
+      submit={(yml) => { dispatch(uploadYML(yml))}}
+      />
+
   }
 
   buildTranslationPage() {
@@ -109,13 +118,27 @@ export default class App extends React.Component {
       />)
   }
 
+  buildTopBar() {
+    var { dispatch, user } = this.props;
+    return <TopBar
+      goTo={(route) => { dispatch(goToRoute(route)) }}
+      loggedIn={this.verifyLoggedIn()}
+      user={user}
+      router={router}
+      />
+  }
+
   render() {
     var { translations, from, to } = this.props;
     var content = this.buildContent();
+    var topbar = this.buildTopBar();
     return (
-      <Grid style={STYLES.grid}>
-        { content }
-      </Grid>
+      <div>
+        {topbar}
+        <Grid style={STYLES.grid}>
+          { content }
+        </Grid>
+      </div>
       );
   }
 

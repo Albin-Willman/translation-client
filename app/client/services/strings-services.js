@@ -44,6 +44,22 @@ export function saveTranslations(){
   }
 }
 
+export function uploadYML(yml){
+  return (dispatch, getState) => {
+    dispatch(setLoading(true));
+    var successCallback = (response) => {
+      dispatch(setLoading(false));
+    }
+    var failCallback = function(data){
+      dispatch(setLoading(false));
+      alert('Failed to save translations.');
+    };
+
+    var { user }= getState();
+    Api.uploadYML(user, { yml: yml }, successCallback, failCallback);
+  }
+}
+
 function transformToStringObjects(stringData) {
   return {
     translations: stringData.translations,

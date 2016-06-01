@@ -48,6 +48,10 @@ export function saveTranslations(user, data, callback, failCallback){
   makeAuthorizedRequest(user.token, 'POST', '/api/translations', data, callback, failCallback);
 }
 
+export function uploadYML(user, data, callback, failCallback){
+  makeAuthorizedRequest(user.token, 'POST', '/api/translations/uploadYML', data, callback, failCallback);
+}
+
 export function logout(user, payload, callback, failCallback) {
   makeAuthorizedRequest(user.token, 'DELETE', 'api/users/logout', payload, callback, failCallback);
 }
