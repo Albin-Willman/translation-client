@@ -44,6 +44,10 @@ export function loadTranslations(user, callback, failCallback){
   makeAuthorizedRequest(user.token, 'GET', '/api/translations', null, callback, failCallback);
 }
 
+export function loadLanguages(user, callback, failCallback){
+  makeAuthorizedRequest(user.token, 'GET', '/api/languages', null, callback, failCallback);
+}
+
 export function saveTranslations(user, data, callback, failCallback){
   makeAuthorizedRequest(user.token, 'POST', '/api/translations', data, callback, failCallback);
 }

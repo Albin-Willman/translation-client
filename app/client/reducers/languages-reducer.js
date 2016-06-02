@@ -1,18 +1,11 @@
-
 import {
   ADD_LANGUAGE,
   SET_TO_LANGUAGE,
   SET_FROM_LANGUAGE,
-} from 'actions/translation-actions';
+} from 'actions/language-actions';
 
 export const INITIAL_STATE = {
-  languages: [{
-    label: 'Swedish',
-    iso: 'sv',
-  },{
-    label: 'English',
-    iso: 'en',
-  },],
+  languages: [],
   to: 'sv',
   from: 'en',
 };
@@ -22,6 +15,7 @@ export function languagesReducer(state = INITIAL_STATE, action) {
   switch (type) {
     case ADD_LANGUAGE: {
       var newState = { ...state };
+
       newState.languages.push(action.payload);
       return newState;
     }

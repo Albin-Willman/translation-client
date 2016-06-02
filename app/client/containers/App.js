@@ -86,7 +86,7 @@ export default class App extends React.Component {
   buildUploadYMLPage() {
     var { dispatch, languages } = this.props;
     return <UploadYmlForm
-      submit={(yml) => { dispatch(uploadYML(yml))}}
+      submit={(yml, language) => { dispatch(uploadYML(yml, language))}}
       languages={languages.languages}
       />
 

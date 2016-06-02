@@ -1,6 +1,6 @@
 import * as Api from 'lib/api';
 
-import { setLoading, addString } from 'actions/translation-actions';
+import { setLoading, addString, resetStrings } from 'actions/translation-actions';
 // import { verifyLoggedIn } from 'services/user-services';
 
 
@@ -10,10 +10,8 @@ export function loadStrings() {
     var addServiceFunction = function(stringData) {
       dispatch(addString(stringData));
     }
-    var successCallback = function(response){
+    var successCallback = function(data){
       dispatch(setLoading(false));
-      var data = response.data;
-
       data.map(transformToStringObjects).map(addServiceFunction);
     };
 
@@ -49,6 +47,8 @@ export function uploadYML(yml, language){
     dispatch(setLoading(true));
     var successCallback = (response) => {
       dispatch(setLoading(false));
+      dispatch(resetStrings());
+      dispatch(loadStrings());
     }
     var failCallback = function(data){
       dispatch(setLoading(false));
@@ -56,6 +56,9 @@ export function uploadYML(yml, language){
     };
 
     var { user }= getState();
+    var data = { yml, language };
+    console.log(data)
+
     Api.uploadYML(user, { yml, language }, successCallback, failCallback);
   }
 }

@@ -7,7 +7,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/translations', function (req, res) {
-    res.send({ data: [
+    res.send([
     	{
     		key: 'path/something',
     		translations: {
@@ -23,7 +23,13 @@ router.get('/translations', function (req, res) {
             },
         },
 
-    	] });
+    	]);
+});
+
+router.get('/languages', function(req, res) {
+    res.send([
+        {"id":1,"iso":"en","name":"English"},{"id":2,"iso":"sv","name":"Swedish"}
+        ])
 });
 
 router.post('/translations', function (req, res) {

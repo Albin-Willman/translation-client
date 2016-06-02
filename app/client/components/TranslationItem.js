@@ -18,10 +18,11 @@ export default class TranslationItem extends React.Component {
     }
 
     render() {
-        var { base, translation } = this.props;
+        var { base, translation, stringKey } = this.props;
 
         return (
             <tr>
+                <td>{stringKey}</td>
                 <td>{base}</td>
                 <td>
                 <FormControl

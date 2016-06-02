@@ -66,6 +66,7 @@ export default class UploadYmlForm extends React.Component {
             <FormGroup>
               <ControlLabel>Select Language</ControlLabel>
               <FormControl componentClass="select" placeholder="select language" onChange={this.setLanguage}>
+                <option>Select language</option>
                 {languageOptions}
               </FormControl>
             </FormGroup>
