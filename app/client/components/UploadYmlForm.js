@@ -50,7 +50,6 @@ export default class UploadYmlForm extends React.Component {
     var { currentValue  } = this.state;
     var { languages } = this.props;
     var languageOptions = languages.map(this.buildLanguageOption);
-    console.log(languageOptions);
 
     return (
       <Row>
