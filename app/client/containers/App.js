@@ -11,6 +11,7 @@ import TranslationList from 'components/TranslationList';
 import LoadingScreen from 'components/LoadingScreen';
 import LoginPage from 'components/LoginPage';
 import UploadYmlForm from 'components/UploadYmlForm';
+import DownloadYmlForm from 'components/DownloadYmlForm';
 import TopBar from 'components/TopBar';
 
 
@@ -21,7 +22,7 @@ import {
 } from 'actions/user-actions';
 
 import { login, createUser, logout } from 'services/user-services';
-import { loadStrings, saveTranslations, uploadYML } from 'services/strings-services';
+import { loadStrings, saveTranslations, uploadYML, downloadYML } from 'services/strings-services';
 import { goToRoute } from 'services/route-services';
 
 import { router } from 'lib/router';
@@ -30,13 +31,6 @@ import { router } from 'lib/router';
 const STYLES = {
   grid: {
     marginTop: 50,
-  },
-  jumbo: {
-    borderRadius: 0,
-    boxShadow: '2px 2px 5px #aaa',
-  },
-  icon: {
-    marginRight: 10,
   },
 };
 
@@ -78,9 +72,20 @@ export default class App extends React.Component {
       case router.login:         Page = this.buildLoginPage(); break;
       case router.translations:  Page = this.buildTranslationPage(); break;
       case router.uploadYML:     Page = this.buildUploadYMLPage(); break;
+      case router.downloadYML:   Page = this.buildDownloadYMLPage(); break;
       default:                   Page = this.buildLoginPage(); break;
     }
     return Page;
+  }
+
+  buildDownloadYMLPage() {
+    var { dispatch, languages, yml } = this.props;
+    console.log(yml);
+    return <DownloadYmlForm
+      languages={languages.languages}
+      submit={(language) => dispatch(downloadYML(language))}
+      yml={yml.yml}
+      />
   }
 
   buildUploadYMLPage() {
@@ -116,12 +121,11 @@ export default class App extends React.Component {
   }
 
   buildTopBar() {
-    var { dispatch, user } = this.props;
+    var { dispatch } = this.props;
     return <TopBar
       goTo={(route) => { dispatch(goToRoute(route)) }}
       loggedIn={this.verifyLoggedIn()}
       logout={$ => { dispatch(logout()) }}
-      user={user}
       router={router}
       />
   }
@@ -140,7 +144,8 @@ export default class App extends React.Component {
   }
 
   updateTranslation = (string, key) => {
-    var { dispatch, to } = this.props;
+    var { dispatch, languages } = this.props;
+    var { to } = languages;
     dispatch(setTranslation(string, to, key));
   }
 

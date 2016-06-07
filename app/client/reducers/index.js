@@ -14,6 +14,7 @@ import { translationsReducer } from 'reducers/translations-reducer';
 import { routeReducer } from 'reducers/route-reducer';
 import { userReducer } from 'reducers/user-reducer';
 import { languagesReducer } from 'reducers/languages-reducer';
+import { ymlReducer } from 'reducers/yml-reducer';
 
 /* reapp: import new reducer */
 
@@ -22,5 +23,6 @@ export const reducers = {
   user: userReducer,
   routes: routeReducer,
   languages: languagesReducer,
+  yml: ymlReducer,
   /* reapp: append new reducer */
 };

@@ -60,6 +60,10 @@ export function logout(user, payload, callback, failCallback) {
   makeAuthorizedRequest(user.token, 'DELETE', 'api/users/logout', payload, callback, failCallback);
 }
 
+export function downloadYML(user, language, callback, failCallback) {
+  makeAuthorizedRequest(user.token, 'GET', '/api/translations/downloadYML?language='+language, null, callback, failCallback);
+}
+
 function makeAuthorizedRequest(token, verb, path, payload, callback, failCallback) {
   $.ajax({
     method: verb,

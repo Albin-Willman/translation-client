@@ -33,13 +33,9 @@ export default class TranslationList extends React.Component {
 
       return (
         <Row>
-          <Col md={10} mdOffset={1}>
+          <Col md={12}>
             <Well>
-              <Table>
-                <tbody>
-                  {rows}
-                </tbody>
-              </Table>
+              {rows}
               <Button block bsStyle={'primary'} onClick={submit}>
                 Save
               </Button>

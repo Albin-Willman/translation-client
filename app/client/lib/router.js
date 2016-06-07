@@ -1,5 +1,6 @@
 export const router = {
   login: '/',
   translations: '/translations',
-  uploadYML: '/uploadYML'
+  uploadYML: '/uploadYML',
+  downloadYML: '/downloadYML',
 }

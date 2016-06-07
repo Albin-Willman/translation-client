@@ -1,7 +1,9 @@
 import * as Api from 'lib/api';
 
 import { setLoading, addString, resetStrings } from 'actions/translation-actions';
-// import { verifyLoggedIn } from 'services/user-services';
+import { setYml } from 'actions/yml-actions';
+
+import { verifyLoggedIn } from 'services/user-services';
 
 
 export function loadStrings() {
@@ -16,6 +18,7 @@ export function loadStrings() {
     };
 
     var failCallback = function(data){
+      dispatch(verifyLoggedIn());
       dispatch(setLoading(false));
       alert('Failed to load strings.');
     };
@@ -27,18 +30,36 @@ export function loadStrings() {
 export function saveTranslations(){
   return (dispatch, getState) => {
     dispatch(setLoading(true));
+
     var successCallback = (response) => {
       dispatch(setLoading(false));
     }
 
     var failCallback = function(data){
+      dispatch(verifyLoggedIn());
       dispatch(setLoading(false));
       alert('Failed to save translations.');
     };
 
     var { user, translations }= getState();
-    Api.saveTranslations(user, translations.strings, successCallback, failCallback);
+    Api.saveTranslations(user, { translations: translations.strings }, successCallback, failCallback);
+  }
+}
 
+export function downloadYML(language){
+  return (dispatch, getState) => {
+    dispatch(setLoading(true));
+    var successCallback = (response) => {
+      dispatch(setLoading(false));
+      dispatch(setYml(response.yml));
+    }
+    var failCallback = function(data){
+      dispatch(verifyLoggedIn());
+      dispatch(setLoading(false));
+      alert('Failed to download yml.');
+    };
+    var { user }= getState();
+    Api.downloadYML(user, language, successCallback, failCallback);
   }
 }
 
@@ -51,13 +72,12 @@ export function uploadYML(yml, language){
       dispatch(loadStrings());
     }
     var failCallback = function(data){
+      dispatch(verifyLoggedIn());
       dispatch(setLoading(false));
       alert('Failed to save translations.');
     };
 
     var { user }= getState();
-    var data = { yml, language };
-    console.log(data)
 
     Api.uploadYML(user, { yml, language }, successCallback, failCallback);
   }

@@ -3,6 +3,8 @@ import React from 'react';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
 
 export default class TranslationItem extends React.Component {
 
@@ -21,18 +23,19 @@ export default class TranslationItem extends React.Component {
         var { base, translation, stringKey } = this.props;
 
         return (
-            <tr>
-                <td>{stringKey}</td>
-                <td>{base}</td>
-                <td>
+            <Row>
+
+                <Col md={2}>{stringKey}</Col>
+                <Col md={5}>{base}</Col>
+                <Col md={5}>
                 <FormControl
                     type="text"
                     value={translation}
                     placeholder="Enter translation"
                     onChange={this.callOnChange}
                   />
-                </td>
-            </tr>
+                </Col>
+            </Row>
         );
     }
 

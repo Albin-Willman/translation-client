@@ -30,6 +30,7 @@ export default class TopBar extends React.Component {
       <Navbar.Collapse>
         <Nav>
           <NavItem href="#" onClick={$ => { goTo(router.uploadYML) }}>Upload YML</NavItem>
+          <NavItem href="#" onClick={$ => { goTo(router.downloadYML) }}>Download YML</NavItem>
         </Nav>
         <Nav pullRight>
           <NavItem href="#" onClick={ logout }>Log out</NavItem>

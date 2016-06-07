@@ -44,6 +44,12 @@ router.post('/translations/uploadYML', function (req, res) {
     })
 });
 
+router.get('/translations/downloadYML', function (req, res) {
+    res.send({
+        yml: "---\nen:\n  contact:\n    title: \"'Contact us'\"\n    thank_you: \"'Thank you for your message. We will be in touch as soon as possible.'\"\n  common:\n    send: \"'Send'\"\n    all: \"'Show all'\"\n  products:\n    listing:\n      title: \"'Our products'\"\n      categories: \"'Categories'\"\n      no_products: \"'No products found'\"\n    attributes:\n      article_number: \"'Article number'\"\n      effect: \"'Effect'\"\n      material: \"'Material'\"\n      dimensions: \"'Dimensions'\"\n      connection: \"'Connection'\"\n      capacity: \"'Performance'\"\n      description: \"'Description'\"\n      mount: \"'Mount'\"\n      misc: \"'Other info'\"\n      approvals: \"'Approvals'\"\n"
+    })
+});
+
 router.post('/users/login', function (req, res) {
     res.send({
         data: {
