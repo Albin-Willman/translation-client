@@ -7,7 +7,7 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 import Button from 'react-bootstrap/lib/Button';
 
-import TranslationList from 'components/TranslationList';
+import TranslationList from 'containers/TranslationList';
 import LoadingScreen from 'components/LoadingScreen';
 import LoginPage from 'components/LoginPage';
 import UploadYmlForm from 'components/UploadYmlForm';
@@ -80,7 +80,6 @@ export default class App extends React.Component {
 
   buildDownloadYMLPage() {
     var { dispatch, languages, yml } = this.props;
-    console.log(yml);
     return <DownloadYmlForm
       languages={languages.languages}
       submit={(language) => dispatch(downloadYML(language))}
@@ -98,15 +97,7 @@ export default class App extends React.Component {
   }
 
   buildTranslationPage() {
-    var { translations, languages, dispatch } = this.props;
-    var { from, to } = languages;
-    return <TranslationList 
-      items={translations.strings}
-      to={ to }
-      from={ from }
-      handleChange={ this.updateTranslation }
-      submit={  $=> { dispatch(saveTranslations()); } }
-    />
+    return <TranslationList/>
   }
 
   buildLoginPage() {
@@ -141,12 +132,6 @@ export default class App extends React.Component {
         </Grid>
       </div>
       );
-  }
-
-  updateTranslation = (string, key) => {
-    var { dispatch, languages } = this.props;
-    var { to } = languages;
-    dispatch(setTranslation(string, to, key));
   }
 
   allowWithoutAuthorization(path) {

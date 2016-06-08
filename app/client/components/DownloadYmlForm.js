@@ -1,9 +1,6 @@
 import React from 'react';
 
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import InputGroup from 'react-bootstrap/lib/InputGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import LanguageSelect from 'components/LanguageSelect';
 import Button from 'react-bootstrap/lib/Button';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
@@ -22,8 +19,8 @@ export default class DownloadYmlForm extends React.Component {
     currentLanguageIso: '',
   }
 
-  setLanguage = (e) => {
-    this.setState({ currentLanguageIso: e.target.value }); 
+  setLanguage = (value) => {
+    this.setState({ currentLanguageIso: value }); 
   }
 
   download = (e) => {
@@ -32,9 +29,6 @@ export default class DownloadYmlForm extends React.Component {
     submit(currentLanguageIso);
   }
 
-  buildLanguageOption = (language) => {
-    return (<option key={language.iso} value={language.iso}>{language.label}</option>);
-  }
 
   buildDisplayBox() {
     var { yml } = this.props;
@@ -42,7 +36,7 @@ export default class DownloadYmlForm extends React.Component {
       return '';
     }
     return (
-      <div style={{"white-space": "pre", "padding": "15px", "background": "white", "margin-top": "25px"}}>
+      <div style={{"whiteSpace": "pre", "padding": "15px", "background": "white", "marginTop": "25px"}}>
         {yml}
       </div>
     );
@@ -50,7 +44,6 @@ export default class DownloadYmlForm extends React.Component {
 
   render() {
     var { languages, yml } = this.props;
-    var languageOptions = languages.map(this.buildLanguageOption);
     var displayBox = this.buildDisplayBox();
 
     return (
@@ -58,15 +51,9 @@ export default class DownloadYmlForm extends React.Component {
         <Col md={10} mdOffset={1}>
           <Well>
             <h1>Download yml</h1>
-            <FormGroup>
-              <ControlLabel>Select Language</ControlLabel>
-              <FormControl componentClass="select" placeholder="select language" onChange={this.setLanguage}>
-                <option>Select language</option>
-                {languageOptions}
-              </FormControl>
-            </FormGroup>
+            <LanguageSelect label="Select language" languages={languages} callback={this.setLanguage} />
             <Button block bsStyle={'primary'} onClick={this.download}>
-              download
+              Download
             </Button>
             {displayBox}
           </Well>

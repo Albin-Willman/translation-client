@@ -1,7 +1,5 @@
 
 import React from 'react';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
@@ -30,11 +28,11 @@ export default class TranslationItem extends React.Component {
         </Col>
         <Col md={6}>
           <FormControl
-          componentClass="textarea"
-          value={translation}
-          placeholder="Enter translation"
-          onChange={this.callOnChange}
-          />
+            componentClass="textarea"
+            value={translation}
+            placeholder="Enter translation"
+            onChange={this.callOnChange}
+            />
         </Col>
       </Row>
       );
