@@ -8,38 +8,39 @@ import Col from 'react-bootstrap/lib/Col';
 
 export default class TranslationItem extends React.Component {
 
-    static propTypes = {
-        value: React.PropTypes.string,
-    }
+  static propTypes = {
+    value: React.PropTypes.string,
+  }
 
-    static defaultProps = {
-        base: '',
-        translation: '',
-        stringKey: '',
-        handleChange: React.PropTypes.func.isRequired,
-    }
+  static defaultProps = {
+    base: '',
+    translation: '',
+    stringKey: '',
+    handleChange: React.PropTypes.func.isRequired,
+  }
 
-    render() {
-        var { base, translation, stringKey } = this.props;
+  render() {
+    var { base, translation, stringKey } = this.props;
 
-        return (
-            <Row>
+    return (
+      <Row>
+        <Col md={6}>
+          <h6>{stringKey}</h6>
+          {base}
+        </Col>
+        <Col md={6}>
+          <FormControl
+          componentClass="textarea"
+          value={translation}
+          placeholder="Enter translation"
+          onChange={this.callOnChange}
+          />
+        </Col>
+      </Row>
+      );
+  }
 
-                <Col md={2}>{stringKey}</Col>
-                <Col md={5}>{base}</Col>
-                <Col md={5}>
-                <FormControl
-                    type="text"
-                    value={translation}
-                    placeholder="Enter translation"
-                    onChange={this.callOnChange}
-                  />
-                </Col>
-            </Row>
-        );
-    }
-
-    callOnChange = (e) => {
-        this.props.handleChange(e.target.value, this.props.stringKey);
-    }
+  callOnChange = (e) => {
+    this.props.handleChange(e.target.value, this.props.stringKey);
+  }
 }

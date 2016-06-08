@@ -36,9 +36,13 @@ export default class TranslationList extends React.Component {
           <Col md={12}>
             <Well>
               {rows}
-              <Button block bsStyle={'primary'} onClick={submit}>
-                Save
-              </Button>
+              <Row>
+                <Col md={12}>
+                  <Button block bsStyle={'primary'} onClick={submit}>
+                    Save
+                  </Button>
+                </Col>
+              </Row>
             </Well>
           </Col>
         </Row>

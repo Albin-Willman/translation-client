@@ -9,3 +9,17 @@
 
 
 @import "./styles/loading";
+
+
+$default_margin: 15px;
+[class^="col-"] {
+  padding-top: $default_margin;
+  padding-bottom: $default_margin;
+}
+
+.row:first-child {
+  margin-top: -$default_margin;
+}
+.row:last-child {
+  margin-bottom: -$default_margin;
+}
