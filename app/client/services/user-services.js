@@ -1,8 +1,8 @@
-import { setLoggedin, setPassword, resetUser } from 'actions/user-actions';
+import { setLoggedin, setPassword, resetUser } from 'auth-hub-module/lib/actions/user-actions';
 import { loadStrings } from 'services/strings-services';
 import { loadLanguages } from 'services/languages-services';
 import { resetStrings } from 'actions/translation-actions';
-import { goToRoute } from 'services/route-services';
+import { goToRoute } from 'auth-hub-module/lib/services/route-services';
 
 
 

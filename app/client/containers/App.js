@@ -9,24 +9,22 @@ import Button from 'react-bootstrap/lib/Button';
 
 import TranslationList from 'containers/TranslationList';
 import LoadingScreen from 'components/LoadingScreen';
-import LoginPage from 'components/LoginPage';
+import LoginPage from 'auth-hub-module/lib/components/LoginPage';
 import UploadYmlForm from 'components/UploadYmlForm';
 import DownloadYmlForm from 'components/DownloadYmlForm';
 import TopBar from 'components/TopBar';
 
-
-import { setTranslation } from 'actions/translation-actions';
 import {
   setUsername,
   setPassword
-} from 'actions/user-actions';
+} from 'auth-hub-module/lib/actions/user-actions';
+import { goToRoute } from 'auth-hub-module/lib/services/route-services';
 
+import { setTranslation } from 'actions/translation-actions';
 import { login, createUser, logout } from 'services/user-services';
 import { loadStrings, saveTranslations, uploadYML, downloadYML } from 'services/strings-services';
-import { goToRoute } from 'services/route-services';
 
 import { router } from 'lib/router';
-
 
 const STYLES = {
   grid: {

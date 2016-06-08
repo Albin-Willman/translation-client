@@ -11,8 +11,8 @@
  */
 
 import { translationsReducer } from 'reducers/translations-reducer';
-import { routeReducer } from 'reducers/route-reducer';
-import { userReducer } from 'reducers/user-reducer';
+import { routeReducer } from 'auth-hub-module/lib/reducers/route-reducer';
+import { userReducer } from 'auth-hub-module/lib/reducers/user-reducer';
 import { languagesReducer } from 'reducers/languages-reducer';
 import { ymlReducer } from 'reducers/yml-reducer';
 
