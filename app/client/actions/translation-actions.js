@@ -3,7 +3,6 @@ export const SET_LOADING = 'setLoading@translation';
 export const ADD_STRING = 'addString@translation';
 export const RESET_STRINGS = 'resetStrings@translation';
 
-
 export function setTranslation(string, language, key) {
     return {
         type: SET_TRANSLATION,
