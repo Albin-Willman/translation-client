@@ -32,7 +32,7 @@ export default class TranslationList extends React.Component {
 
   itemIncluded(filter, strings){
     for (var i in strings){
-      if(strings[i].indexOf(filter) > -1) {
+      if((typeof strings[i] != 'undefined') && (strings[i].indexOf(filter) > -1)) {
         return true;
       }
     }

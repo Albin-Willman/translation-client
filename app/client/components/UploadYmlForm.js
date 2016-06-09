@@ -40,7 +40,7 @@ export default class UploadYmlForm extends React.Component {
   }
 
   render() {
-    var { currentValue  } = this.state;
+    var { currentValue, currentLanguageIso } = this.state;
     var { languages } = this.props;
 
     return (
@@ -55,7 +55,7 @@ export default class UploadYmlForm extends React.Component {
                 value={currentValue}
                 />
             </FormGroup>
-            <LanguageSelect label="Select language" languages={languages} callback={this.setLanguage} />
+            <LanguageSelect label="Select language" languages={languages} value={currentLanguageIso} callback={this.setLanguage} />
             <Button block bsStyle={'primary'} onClick={this.upload}>
               Save
             </Button>

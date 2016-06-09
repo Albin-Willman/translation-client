@@ -14,7 +14,6 @@ export default class DownloadYmlForm extends React.Component {
     yml: ''
   }
 
-
   state = {
     currentLanguageIso: '',
   }
@@ -25,8 +24,7 @@ export default class DownloadYmlForm extends React.Component {
 
   download = (e) => {
     var { submit } = this.props;
-    var {  currentLanguageIso } = this.state;
-    submit(currentLanguageIso);
+    submit(this.state.currentLanguageIso);
   }
 
 
@@ -44,6 +42,7 @@ export default class DownloadYmlForm extends React.Component {
 
   render() {
     var { languages, yml } = this.props;
+    var { currentLanguageIso } = this.state;
     var displayBox = this.buildDisplayBox();
 
     return (
@@ -51,7 +50,7 @@ export default class DownloadYmlForm extends React.Component {
         <Col md={10} mdOffset={1}>
           <Well>
             <h1>Download yml</h1>
-            <LanguageSelect label="Select language" languages={languages} callback={this.setLanguage} />
+            <LanguageSelect label="Select language" languages={languages} value={currentLanguageIso} callback={this.setLanguage} />
             <Button block bsStyle={'primary'} onClick={this.download}>
               Download
             </Button>
@@ -59,6 +58,6 @@ export default class DownloadYmlForm extends React.Component {
           </Well>
         </Col>
       </Row>
-      );
+    );
   }
 }
