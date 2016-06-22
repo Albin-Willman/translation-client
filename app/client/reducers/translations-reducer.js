@@ -39,7 +39,6 @@ export function translationsReducer(state = INITIAL_STATE, action) {
                 strings: {}
             }
         }
-        
         default: return state;
     }
 }

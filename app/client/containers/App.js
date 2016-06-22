@@ -9,15 +9,12 @@ import Button from 'react-bootstrap/lib/Button';
 
 import TranslationList from 'containers/TranslationList';
 import LoadingScreen from 'components/LoadingScreen';
-import LoginPage from 'auth-hub-module/lib/components/LoginPage';
 import UploadYmlForm from 'components/UploadYmlForm';
 import DownloadYmlForm from 'components/DownloadYmlForm';
 import TopBar from 'components/TopBar';
 
-import {
-  setUsername,
-  setPassword
-} from 'auth-hub-module/lib/actions/user-actions';
+import LoginPage from 'auth-hub-module/lib/components/LoginPage';
+import { setUsername, setPassword } from 'auth-hub-module/lib/actions/user-actions';
 import { goToRoute } from 'auth-hub-module/lib/services/route-services';
 
 import { setTranslation } from 'actions/translation-actions';

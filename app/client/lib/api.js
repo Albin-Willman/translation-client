@@ -75,7 +75,7 @@ function makeAuthorizedRequest(token, verb, path, payload, callback, failCallbac
     data: payload,
     success: callback,
     error: failCallback
-  }); 
+  });
 }
 
 function buildUrl(path) {
